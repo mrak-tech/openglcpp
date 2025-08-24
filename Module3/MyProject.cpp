@@ -13,7 +13,7 @@ void display() {
     glRasterPos2f(-0.2, 0.0);  // Approximate center (adjusted for text width)
 
     // Message to display
-    const char* message = "Hello, Manila!";
+    const char* message = "Hello, Module3!";
 
     // Draw each character one by one
     for (int i = 0; i < strlen(message); i++) {
