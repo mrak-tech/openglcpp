@@ -44,61 +44,8 @@ In C++, you call OpenGL’s C API directly and typically combine it with:
 - **Optional utilities:** stb_image (textures), Assimp (models), Dear ImGui (debug UI), spdlog (logging).
 
 ### Quick Install Recipes
-
-#### Windows (vcpkg; works with MSVC or MinGW)
-```powershell
-# Install vcpkg once (see vcpkg.io)
-vcpkg install glfw3 glad glm glew assimp imgui[sdl2-binding,glfw-binding]
-# CMake toolchain example:
-# -DCMAKE_TOOLCHAIN_FILE=C:/path/to/vcpkg/scripts/buildsystems/vcpkg.cmake
-```
-
-#### Windows (MSYS2 UCRT64)
-```bash
-# Start the "MSYS2 UCRT64" shell
-pacman -S --needed base-devel git cmake
-pacman -S --needed mingw-w64-ucrt-x86_64-gcc mingw-w64-ucrt-x86_64-cmake
-pacman -S --needed mingw-w64-ucrt-x86_64-glfw mingw-w64-ucrt-x86_64-glad \
-                 mingw-w64-ucrt-x86_64-glew mingw-w64-ucrt-x86_64-glm
-```
-
-#### macOS (Homebrew)
-```bash
-brew install cmake glfw glm glew assimp
-# For GLAD: generate sources at https://glad.dav1d.de/ or use vcpkg: vcpkg install glad
-```
-
-#### Ubuntu/Debian
-```bash
-sudo apt update
-sudo apt install build-essential cmake git libgl1-mesa-dev
-sudo apt install libglfw3-dev libglew-dev libglm-dev libassimp-dev
-# For GLAD: generate sources and vendor them in your project, or use vcpkg.
-```
-
-### Minimal CMake Skeleton
-```cmake
-cmake_minimum_required(VERSION 3.20)
-project(hello_opengl CXX)
-
-set(CMAKE_CXX_STANDARD 17)
-find_package(glfw3 REQUIRED)
-# If using GLAD as sources, add it to your target instead of find_package
-add_executable(app src/main.cpp src/glad.c)
-target_link_libraries(app PRIVATE glfw)
-# On Linux you may need: target_link_libraries(app PRIVATE dl pthread)
-```
-
-### Typical Project Structure
-```
-your-project/
-├─ CMakeLists.txt
-├─ external/        # (optional) vendored libs like GLAD, stb
-├─ shaders/         # .vert / .frag GLSL files
-└─ src/
-   ├─ main.cpp
-   └─ glad.c        # if you generated GLAD C-only loader
-```
+- Clone the repo
+- Save to your Desktop
 
 ## When to Use OpenGL
 - **Learning graphics programming** and shader pipelines.
