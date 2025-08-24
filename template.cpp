@@ -8,7 +8,7 @@ void display() {
 
 int main(int argc, char** argv) {
     glutInit(&argc, argv);                    // Initialize GLUT
-    glutCreateWindow("My first Open GL Program ");    // Create window
+    glutCreateWindow("My first Open GL Program");    // Create window
     glutDisplayFunc(display);                 // Set display callback
     glutMainLoop();                           // Enter event loop
     return 0;
