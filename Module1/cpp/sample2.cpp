@@ -1,3 +1,6 @@
+//Program 2: Pointer Arithmetic
+//This program demonstrates pointer arithmetic with integers.
+
 #include <iostream>
 using namespace std;
 
