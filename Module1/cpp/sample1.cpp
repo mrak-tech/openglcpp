@@ -1,3 +1,6 @@
+//Program 1: Basic Pointer Usage
+//This program demonstrates how to declare, initialize, and dereference pointers.
+
 #include <iostream>
 using namespace std;
 
