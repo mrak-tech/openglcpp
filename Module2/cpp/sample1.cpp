@@ -1,3 +1,4 @@
+// Simple Function Without Parameters
 #include <iostream>
 using namespace std;
 
