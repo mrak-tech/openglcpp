@@ -33,6 +33,7 @@ At the end of this subtopic, the student will be able to:
 
 ### OpenGL Rendering Pipeline
 - Latest version: 4.5.
+- The OpenGL rendering pipeline is a sequence of stages that processes 3D scene data and converts it into a 2D image displayed on the screen. It is a crucial concept in computer graphics and OpenGL programming.
 - The **OpenGL rendering pipeline** processes 3D scene data to produce a 2D image displayed on the screen.
   - Fixed-function stages: Controlled by OpenGL.
   - Programmable stages: Developers write custom code called shaders.
