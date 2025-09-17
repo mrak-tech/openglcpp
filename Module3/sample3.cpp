@@ -6,7 +6,7 @@ void display() {
 
     // --- Drawing Commands ---
     // Set the point size to 10 pixels to make it visible
-    glPointSize(50.0f);
+    glPointSize(100.0f);
 
     // Start a drawing block for points
     glBegin(GL_POINTS);
