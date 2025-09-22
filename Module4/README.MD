@@ -14,13 +14,20 @@ Below is a complete list of the standard OpenGL geometric primitives,
 along with their syntax, description, and examples.
 
 ## 1.  GL_POINTS Description: Each vertex is rendered as an individual
-    point. Syntax: glBegin(GL_POINTS); glVertex3f(x0, y0, z0);
-    glVertex3f(x1, y1, z1); // ... more points glEnd();
+    point. 
+- Syntax: 
+    glBegin(GL_POINTS); 
+        glVertex3f(x0, y0, z0);
+        glVertex3f(x1, y1, z1); 
+        // ... more points 
+    glEnd();
 
 **Example:**
 ```c
-glBegin(GL_POINTS); glVertex3f(0.0, 0.0, 0.0); // Point at origin
-glVertex3f(1.0, 1.0, 0.0); // Another point glEnd();
+glBegin(GL_POINTS);
+    glVertex3f(0.0, 0.0, 0.0); // Point at origin
+    glVertex3f(1.0, 1.0, 0.0); // Another point 
+glEnd();
 
 ```
 
