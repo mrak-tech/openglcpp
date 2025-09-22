@@ -15,12 +15,14 @@ along with their syntax, description, and examples.
 
 ## 1.  GL_POINTS Description: Each vertex is rendered as an individual
     point. 
-- Syntax: 
+```c
+    Syntax: 
     glBegin(GL_POINTS); 
         glVertex3f(x0, y0, z0);
         glVertex3f(x1, y1, z1); 
         // ... more points 
     glEnd();
+```
 
 **Example:**
 ```c
