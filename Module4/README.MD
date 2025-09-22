@@ -19,6 +19,9 @@ along with their syntax, description, and examples.
 
 **Example:**
 ```c
+glBegin(GL_POINTS); glVertex3f(0.0, 0.0, 0.0); // Point at origin
+glVertex3f(1.0, 1.0, 0.0); // Another point glEnd();
+
 ```
 
 glBegin(GL_POINTS); glVertex3f(0.0, 0.0, 0.0); // Point at origin
