@@ -24,9 +24,6 @@ glVertex3f(1.0, 1.0, 0.0); // Another point glEnd();
 
 ```
 
-glBegin(GL_POINTS); glVertex3f(0.0, 0.0, 0.0); // Point at origin
-glVertex3f(1.0, 1.0, 0.0); // Another point glEnd();
-
 ## 2.  GL_LINES Description: Vertices are paired to form separate line
     segments. Every two vertices make one line. Syntax:
     glBegin(GL_LINES); glVertex3f(x0, y0, z0); // Start of line 1
@@ -35,11 +32,10 @@ glVertex3f(1.0, 1.0, 0.0); // Another point glEnd();
 
 **Example:**
 ```c
-```
-
 glBegin(GL_LINES); glVertex3f(0.0, 0.0, 0.0); glVertex3f(1.0, 0.0, 0.0);
 // Horizontal line glVertex3f(0.5, 0.0, 0.0); glVertex3f(0.5, 1.0, 0.0);
 // Vertical line glEnd();
+```
 
 ## 3.  GL_LINE_STRIP Description: A strip of connected line segments. The
     first vertex starts the strip; each new vertex connects to the
@@ -50,6 +46,8 @@ glVertex3f(x2, y2, z2); // ... glEnd();
 
 **Example:**
 ```c
+glBegin(GL_LINE_STRIP); glVertex3f(0.0, 0.0, 0.0); glVertex3f(1.0, 0.0,
+0.0); glVertex3f(1.0, 1.0, 0.0); glVertex3f(0.0, 1.0, 0.0); glEnd();
 ```
 
 glBegin(GL_LINE_STRIP); glVertex3f(0.0, 0.0, 0.0); glVertex3f(1.0, 0.0,
@@ -120,8 +118,10 @@ Renders a filled quadrilateral as four triangles around the center.
 
 **Example:**
 ```c
+glBegin(GL_QUADS); glVertex3f(0.0, 0.0, 0.0); glVertex3f(1.0,
 0.0, 0.0); glVertex3f(1.0, 1.0, 0.0); glVertex3f(0.0, 1.0, 0.0);
 glEnd();
+
 ```
 
 ## 9.  GL_QUAD_STRIP Description: Strips of quads where each new pair of
@@ -143,10 +143,11 @@ glVertex3f(x2, y2, z2); // ... glEnd();
 
 **Example:**
 ```c
-```
-
 glBegin(GL_POLYGON); glVertex3f(0.0, 0.0, 0.0); glVertex3f(1.0, 0.0,
 0.0); glVertex3f(1.0, 1.0, 0.0); glVertex3f(0.0, 1.0, 0.0); glEnd();
+```
+
+
 
 # Examples
 
