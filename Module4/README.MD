@@ -13,8 +13,7 @@ connected to form visible geometry.
 Below is a complete list of the standard OpenGL geometric primitives,
 along with their syntax, description, and examples.
 
-## 1.  GL_POINTS Description: Each vertex is rendered as an individual
-    point. 
+## 1.  GL_POINTS Description: Each vertex is rendered as an individual point. 
 ```c
     Syntax: 
     glBegin(GL_POINTS); 
@@ -33,8 +32,7 @@ glEnd();
 
 ```
 
-## 2.  GL_LINES Description: Vertices are paired to form separate line
-    segments. Every two vertices make one line. 
+## 2.  GL_LINES Description: Vertices are paired to form separate line segments. Every two vertices make one line. 
 ```c
 Syntax:
     glBegin(GL_LINES); 
@@ -54,9 +52,7 @@ Syntax:
     glEnd();
 ```
 
-## 3.  GL_LINE_STRIP Description: A strip of connected line segments. The
-    first vertex starts the strip; each new vertex connects to the
-    previous one. 
+## 3.  GL_LINE_STRIP Description: A strip of connected line segments. The first vertex starts the strip; each new vertex connects to the previous one. 
 ```c
 Syntax:
     glBegin(GL_LINE_STRIP); 
@@ -76,8 +72,7 @@ Syntax:
 ```
 Draws a square outline (connected path).
 
-## 4.  GL_LINE_LOOP Description: Like GL_LINE_STRIP, but the last vertex
-    connects back to the first, forming a closed loop. 
+## 4.  GL_LINE_LOOP Description: Like GL_LINE_STRIP, but the last vertex connects back to the first, forming a closed loop. 
 ```c
     Syntax:
         glBegin(GL_LINE_LOOP); 
@@ -100,8 +95,7 @@ Draws a square outline (connected path).
 
 Draws a closed rectangle.
 
-## 5.  GL_TRIANGLES Description: Every three consecutive vertices define a
-    triangle. No shared vertices between triangles. 
+## 5.  GL_TRIANGLES Description: Every three consecutive vertices define a triangle. No shared vertices between triangles. 
 ```c
 Syntax:
     glBegin(GL_TRIANGLES);
@@ -126,10 +120,10 @@ Syntax:
     glEnd();
 ```
 
-## 6.  GL_TRIANGLE_STRIP Description: Triangles are formed from a strip
-    where each new vertex forms a triangle with the previous two.
-    Pattern: V₀,V₁,V₂ → triangle 1; V₁,V₂,V₃ → triangle 2; V₂,V₃,V₄ →
-    triangle 3; etc. 
+## 6.  GL_TRIANGLE_STRIP Description: Triangles are formed from a strip where each new vertex forms a triangle with the previous two. 
+```c
+Pattern: V₀,V₁,V₂ → triangle 1; V₁,V₂,V₃ → triangle 2; V₂,V₃,V₄ → triangle 3; etc. 
+```
 ```c
 Syntax: 
     glBegin(GL_TRIANGLE_STRIP);
@@ -149,12 +143,15 @@ Syntax:
         glVertex3f(1.5, 1.0, 0.0);
     glEnd();
 ```
-Renders two adjacent triangles sharing the middle edge.
+**Renders two adjacent triangles sharing the middle edge.**
 
-## 7.  GL_TRIANGLE_FAN Description: All triangles share a common vertex
-    (the "center"). First vertex is the center; subsequent vertices form
-    triangles with it and the previous one. Pattern: V₀,V₁,V₂ → triangle
-    1; V₀,V₂,V₃ → triangle 2; V₀,V₃,V₄ → triangle 3; etc. 
+## 7.  GL_TRIANGLE_FAN Description: All triangles share a common vertex (the "center"). First vertex is the center; subsequent vertices form triangles with it and the previous one. 
+
+```c
+**Pattern:**
+    V₀,V₁,V₂ → triangle 1; 
+    V₀,V₂,V₃ → triangle 2; 
+    V₀,V₃,V₄ → triangle 3; etc. 
 ```c
 Syntax:
     glBegin(GL_TRIANGLE_FAN);
@@ -177,8 +174,7 @@ Syntax:
 ```
 Renders a filled quadrilateral as four triangles around the center.
 
-## 8.  GL_QUADS (Quadrilaterals) Description: Each group of four vertices
-    defines a quadrilateral (quad). 
+## 8.  GL_QUADS (Quadrilaterals) Description: Each group of four vertices defines a quadrilateral (quad). 
 ```c
 **Syntax:**
     glBegin(GL_QUADS);
@@ -199,10 +195,13 @@ Renders a filled quadrilateral as four triangles around the center.
     glEnd();
 ```
 
-## 9.  GL_QUAD_STRIP Description: Strips of quads where each new pair of
-    vertices creates a new quad with the previous pair. 
-    Pattern: V₀,V₁,V₂,V₃ → quad 1; V₂,V₃,V₄,V₅ → quad 2; etc. 
-
+## 9.  GL_QUAD_STRIP Description: Strips of quads where each new pair of vertices creates a new quad with the previous pair. 
+```
+    Pattern: 
+        V₀,V₁,V₂,V₃ → quad 1; 
+        V₂,V₃,V₄,V₅ → quad 2; 
+        etc. 
+```
 ```c
 **Syntax:**
     glBegin(GL_QUAD_STRIP);
@@ -224,9 +223,7 @@ Renders a filled quadrilateral as four triangles around the center.
         glVertex3f(2.0, 1.0, 0.0);
     glEnd();
 ```
-## 10. GL_POLYGON Description: Draws a single convex polygon from a list of
-    vertices. The vertices must be ordered (clockwise or
-    counter-clockwise). 
+## 10. GL_POLYGON Description: Draws a single convex polygon from a list of vertices. The vertices must be ordered (clockwise or counter-clockwise). 
 
 ```c
 **Syntax**
@@ -249,8 +246,7 @@ Renders a filled quadrilateral as four triangles around the center.
 
 
 ##glClearColor(r, g, b, a) 
-- Set the Background (Clear) Color Purpose:
-Sets the color that OpenGL will use to clear the screen (i.e., "paint" the background) when you call glClear(GL_COLOR_BUFFER_BIT).
+- Set the Background (Clear) Color Purpose: Sets the color that OpenGL will use to clear the screen (i.e., "paint" the background) when you call glClear(GL_COLOR_BUFFER_BIT).
 
 Think of it as choosing the "canvas color" before you start drawing.
 
@@ -259,7 +255,8 @@ Think of it as choosing the "canvas color" before you start drawing.
 ```c
 GLfloat alpha);
 ```
-Parameters: red, green, blue: Color components, each from 0.0 to 1.0.
+Parameters:
+    red, green, blue: Color components, each from 0.0 to 1.0.
 0.0 = none of that color 1.0 = full intensity alpha: Transparency
 (usually ignored in basic 2D drawing unless blending is enabled). Also
 0.0 to 1.0.
