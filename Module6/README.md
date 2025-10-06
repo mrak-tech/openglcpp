@@ -23,7 +23,7 @@
 - This reduces CPU–GPU data transfer overhead during rendering.
 
 ### ⚠️ Legacy Approach: `glBegin()` / `glEnd()`
-Example from the PDF:
+Example:
 ```cpp
 void triangle() {
     glBegin(GL_TRIANGLES);
