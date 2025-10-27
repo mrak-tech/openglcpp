@@ -354,5 +354,5 @@ For indexed rendering, bind a VBO for `GL_ELEMENT_ARRAY_BUFFER` and enable `GL_N
    ```
 
 ---
-Vertex Buffer Objects are a powerful tool in OpenGL for optimizing rendering performance. By storing vertex data in the GPU's memory, developers can achieve faster rendering and better memory management. Understanding how to configure GLEW, implement VBOs, and dynamically modify vertex data is crucial for building efficient graphics applications.
+Vertex Buffer Objects are a powerful tool in OpenGL for optimizing rendering performance. By storing vertex data in the GPU's memory, developers can achieve faster rendering and better memory management. 
 ---
