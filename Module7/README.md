@@ -4,7 +4,7 @@
 
 #### **Topic: Vertex Buffer Objects (VBOs)**
 
-Vertex Buffer Objects (VBOs) are an essential feature in OpenGL that allow developers to efficiently manage and render graphical data. This module focuses on understanding and implementing VBOs in C++ programs, configuring GLEW in DevC++, and leveraging video card memory for vertex operations.
+Vertex Buffer Objects (VBOs) are an essential feature in OpenGL that allow developers to efficiently manage and render graphical data.  Module  7 focuses on understanding and implementing VBOs in C++ programs, configuring GLEW in DevC++, and leveraging video card memory for vertex operations.
 
 ---
 
