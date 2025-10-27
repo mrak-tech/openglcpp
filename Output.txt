@@ -1,1 +1,1 @@
-VBO draw time: 0.0004541 seconds
+VBO IDs: 1, 2 (GL_ARRAY_BUFFER)
