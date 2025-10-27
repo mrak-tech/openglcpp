@@ -134,11 +134,7 @@ This code uses a **Vertex Buffer Object (VBO)** to render a triangle strip. It a
 
 ---
 
-### **Summary**
 - **Code 1** demonstrates immediate mode rendering, which is simple but inefficient and outdated. It measures the time taken to draw a triangle using `glBegin`/`glEnd`.
 - **Code 2** demonstrates modern OpenGL rendering using a VBO. It measures the time taken to render a triangle strip using `glDrawArrays`. This approach is efficient and scalable.
 
 Both codes include timing measurements to compare performance, but Code 2 is the better choice for modern OpenGL applications due to its efficiency and scalability.
-
-**Final Answer:**
-The key difference is that **Code 1** uses immediate mode rendering (`glBegin`/`glEnd`) while **Code 2** uses a Vertex Buffer Object (VBO) for efficient rendering. Additionally, **Code 2** includes GLEW initialization and focuses on modern OpenGL practices.
