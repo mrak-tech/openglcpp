@@ -1,1 +1,1 @@
-VBO flag draw time: 0.0005731 seconds
+VBO flag draw time: 0.0005053 seconds
