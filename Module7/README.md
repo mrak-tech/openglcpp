@@ -113,7 +113,7 @@ To implement VBOs, we use several OpenGL functions:
   GLfloat vertices[] = {0.0f, 0.5f, 0.0f, -0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f};
   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
   ```
-- **Analogy**: Think of `glBufferData()` as copying files from your computer (CPU) to a USB drive (GPU) for faster access.
+- **Analogy**: Think of `glBufferData()` as copying files from your computer (CPU) to a (GPU) for faster access.
 
 ---
 
