@@ -120,7 +120,7 @@ void polygon() {
 ```
 ---
 
-### ⏱️ `modifyPolygon(int value)` Function
+### `modifyPolygon(int value)` Function
 
 ```cpp
 void modifyPolygon(int value) {
