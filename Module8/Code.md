@@ -56,7 +56,7 @@ GLuint VBOid;          // VBO identifier
 
 ---
 
-###`main()` Function
+### `main()` Function
 
 ```cpp
 int main(int argc, char** argv) {
