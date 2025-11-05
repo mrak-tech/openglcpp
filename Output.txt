@@ -1,0 +1,2 @@
+OpenGL version supported by this platform (4.6.0 Compatibility Profile Context 24.10.20.240607): 
+OpenGL vendor (ATI Technologies Inc.): 
