@@ -1,0 +1,260 @@
+//#define GLEW_STATIC
+#include <GL/glew.h>
+#include <GL/freeglut.h>
+#include <iostream>
+
+#define BUFFER_OFFSET(i) ((void*)(i))
+
+
+void GLAPIENTRY MessageCallback(GLenum source,
+	GLenum type,
+	GLuint id,
+	GLenum severity,
+	GLsizei length,
+	const GLchar* message,
+	const void* userParam);
+
+using namespace std;
+
+void displayObject();
+void initVBO();
+void cleanup();
+void animateTriangle(int value);
+void specialKeys(int key, int x, int y);
+
+GLuint VBOid;
+
+float angle;
+
+double camX = 0.0;
+double camY = 0.0;
+double camZ = -7.0f;
+
+GLfloat vertices[] = {
+	//Triangle
+	0.0f, 1.0f, 0.0f,
+	-1.0f, -1.0f, 1.0f,
+	1.0f, -1.0f, 1.0f,
+
+	0.0f, 1.0f, 0.0f,
+	1.0f, -1.0f, 1.0f,
+	1.0f, -1.0f, -1.0f,
+
+	0.0f, 1.0f, 0.0f,
+	1.0f, -1.0f, -1.0f,
+	-1.0f, -1.0f, -1.0f,
+
+	0.0f,  1.0f,  0.0f,
+	-1.0f,-1.0f, -1.0f,
+	-1.0f,-1.0f,  1.0f,
+
+	//Cube
+
+	1.0f, 1.0f, -1.0f,
+	-1.0f, 1.0f, -1.0f,
+	-1.0f, 1.0f,  1.0f,
+	 1.0f, 1.0f,  1.0f,
+
+	 1.0f, -1.0f,  1.0f,
+	-1.0f, -1.0f,  1.0f,
+	-1.0f, -1.0f, -1.0f,
+	 1.0f, -1.0f, -1.0f,
+
+	 1.0f,  1.0f, 1.0f,
+	-1.0f,  1.0f, 1.0f,
+	-1.0f, -1.0f, 1.0f,
+	 1.0f, -1.0f, 1.0f,
+
+
+	 1.0f, -1.0f, -1.0f,
+	-1.0f, -1.0f, -1.0f,
+	-1.0f,  1.0f, -1.0f,
+	 1.0f,  1.0f, -1.0f,
+
+	-1.0f,  1.0f,  1.0f,
+	-1.0f,  1.0f, -1.0f,
+	-1.0f, -1.0f, -1.0f,
+	-1.0f, -1.0f,  1.0f,
+
+	1.0f,  1.0f, -1.0f,
+	1.0f,  1.0f,  1.0f,
+	1.0f, -1.0f,  1.0f,
+	1.0f, -1.0f, -1.0f,
+
+};
+
+GLfloat colors[] = {
+	1.0f, 0.0f, 0.0f,
+	0.0f, 1.0f, 0.0f,
+	0.0f, 0.0f, 1.0f,
+
+	1.0f, 0.0f, 0.0f,
+	0.0f, 0.0f, 1.0f,
+	0.0f, 1.0f, 0.0f,
+
+	1.0f, 0.0f, 0.0f,
+	0.0f, 1.0f, 0.0f,
+	0.0f, 0.0f, 1.0f,
+
+	1.0f,0.0f,0.0f,
+	0.0f,0.0f,1.0f,
+	0.0f,1.0f,0.0f
+};
+
+
+
+int main(int argc, char** argv) {
+
+	glutInit(&argc, argv);
+
+	glutInitWindowSize(1024, 768);
+
+	glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH);
+
+	glutCreateWindow("simple");
+
+	glutDisplayFunc(displayObject);
+	glutSpecialFunc(specialKeys);
+
+	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
+
+	GLenum err = glewInit();
+	if (err == GLEW_OK) {
+		glEnable(GL_DEBUG_OUTPUT);
+		glDebugMessageCallback(MessageCallback, 0);
+		printf("OpenGL version supported by this platform (%s): \n", glGetString(GL_VERSION));
+		printf("OpenGL vendor (%s): \n", glGetString(GL_VENDOR));
+
+
+		initVBO();
+
+		glutTimerFunc(50, animateTriangle, 1);
+		glutMainLoop();
+
+	}
+
+	cleanup();
+
+
+}
+
+void initVBO() {
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+
+	//gluOrtho2D(-2.0, 2.0, -2.0, 2.0);
+	//glOrtho(-2.0, 2.0, -2.0, 2.0, -5.0, 5.0);
+	gluPerspective(90.0f, 1024.0 / 768.0, 1.0f, 10.0f); //Camera
+
+	glEnable(GL_DEPTH_TEST);
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
+	gluLookAt(camX, camY, camZ, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0); //Place the camera on the scene
+
+
+
+	glGenBuffers(1, &VBOid);
+	glBindBuffer(GL_ARRAY_BUFFER, VBOid);
+	glBufferData(GL_ARRAY_BUFFER, ((9 * 4) + (12 * 6) + (9 * 4) + (12 * 6)) * sizeof(GLfloat), vertices, GL_STATIC_DRAW);
+
+	glBufferSubData(GL_ARRAY_BUFFER, ((9 * 4) + (12 * 6)) * sizeof(GLfloat), ((9 * 4) * sizeof(GLfloat)), colors);
+
+
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_COLOR_ARRAY);
+
+	glVertexPointer(3, GL_FLOAT, 0, 0);
+	glColorPointer(3, GL_FLOAT, 0, BUFFER_OFFSET(((9 * 4) + (12 * 6)) * sizeof(GLfloat)));
+
+
+
+
+}
+
+
+void specialKeys(int key, int x, int y) {
+
+	switch (key) {
+
+	case GLUT_KEY_UP:
+		camY += .1;
+		
+		break;
+	case GLUT_KEY_DOWN:
+		camY -= .1;
+		break;
+
+	case GLUT_KEY_LEFT:
+		camX += .1;
+		break;
+	case GLUT_KEY_RIGHT:
+		camX -= .1;
+		break;
+	}
+
+	
+	glutPostRedisplay();
+
+}
+
+void animateTriangle(int value) {
+	if (angle > 360)
+		angle -= 360;
+
+	angle++;
+
+	glutPostRedisplay();
+	glutTimerFunc(50, animateTriangle, 1);
+}
+
+void cleanup() {
+
+	glDisableClientState(GL_VERTEX_ARRAY);
+	glDisableClientState(GL_COLOR_ARRAY);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glDeleteBuffers(1, &VBOid);
+}
+
+void displayObject() {
+
+	
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	gluLookAt(camX, camY, camZ, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0); //Place the camera on the scene
+
+	
+	glPushMatrix();
+
+	glRotatef(angle, 0.0, 1.0f, 0.0f); //triangle
+	glDrawArrays(GL_TRIANGLES, 0, 12);
+	
+	glFlush();
+
+	glPopMatrix();
+
+}
+
+void GLAPIENTRY MessageCallback(GLenum source,
+	GLenum type,
+	GLuint id,
+	GLenum severity,
+	GLsizei length,
+	const GLchar* message,
+	const void* userParam)
+{
+	fprintf(stderr, "GL CALLBACK: %s type = 0x%x, severity = 0x%x, message = %s\n",
+		(type == GL_DEBUG_TYPE_ERROR ? "** GL ERROR **" : ""),
+		type, severity, message);
+}
+
+
+
+
+
+
+
